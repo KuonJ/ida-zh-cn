@@ -329,9 +329,9 @@ def _visit(w, st):
                 continue
             _swap(a, a.toolTip, a.setToolTip, P_TIP)
             _swap(a, a.statusTip, a.setStatusTip, P_STIP)
-            if isinstance(w, (QtWidgets.QMenu, QtWidgets.QMenuBar)):
+            if sys.platform == "darwin" and isinstance(w, (QtWidgets.QMenu, QtWidgets.QMenuBar)):
                 _swap(a, a.text, a.setText, P_TEXT, translate_menu)
-        if isinstance(w, QtWidgets.QMenu):
+        if sys.platform == "darwin" and isinstance(w, QtWidgets.QMenu):
             _swap(w, w.title, w.setTitle, P_TITLE, translate_menu)
 
     # 对话框标题: 只改真正的对话框, 且不是 IDA 的停靠窗口
